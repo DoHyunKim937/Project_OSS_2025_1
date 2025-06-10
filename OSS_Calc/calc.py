@@ -1,4 +1,6 @@
 import tkinter as tk
+import random
+
 
 
 class Calculator:
@@ -19,7 +21,7 @@ class Calculator:
             ['4', '5', '6', '*'],
             ['1', '2', '3', '-'],
             ['0', '.', 'C', '+'],
-            ['=']
+            ['Q', '=']
         ]
 
         for row in buttons:
@@ -37,6 +39,7 @@ class Calculator:
     def on_click(self, char):
         if char == 'C':
             self.expression = ""
+            
         elif char == '=':
             try:
                 self.expression = str(eval(self.expression))
@@ -44,6 +47,10 @@ class Calculator:
                 self.expression = "에러"
         else:
             self.expression += str(char)
+            
+        if char == 'Q':
+            asmd = ['+','-','/','*']
+            self.expression = random.randint(0,1000), random.choice(asmd),random.randint(0,1000)
 
         self.entry.delete(0, tk.END)
         self.entry.insert(tk.END, self.expression)
